@@ -37,4 +37,23 @@ function getWeather(city) {
         `;
         todaySection.innerHTML = todayHTML;
       
-
+        var forecastHTML = '';
+        for (var i = 1; i <= 5; i++) {
+          var forecastData = data.daily[i];
+          forecastHTML += `
+            <div class="col-md">
+              <div class="card bg-primary text-white">
+                <div class="card-body">
+                  <h5 class="card-title">${moment.unix(forecastData.dt).format('M/D/YYYY')}</h5>
+                  <img src="https://openweathermap.org/img/w/${forecastData.weather[0].icon}.png" alt="${forecastData.weather[0].description}" />
+                  <p class="card-text">Temp: ${forecastData.temp.day} &deg;F</p>
+                  <p class="card-text">Humidity: ${forecastData.humidity}%</p>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+        forecastSection.innerHTML = forecastHTML;
+      }
+      
+     
