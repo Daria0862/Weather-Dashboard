@@ -7,3 +7,21 @@ var searchInput = document.querySelector('#search-input');
 var historyList = document.querySelector('#history');
 var todaySection = document.querySelector('#today');
 var forecastSection = document.querySelector('#forecast');
+
+function getWeather(city) {
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
+  
+    fetch(queryURL)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        console.log(data);
+  
+        displayWeather(data);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+  
